@@ -15,7 +15,7 @@ class HDD(Storage):
 
     def __init__(self, name, manufacturer, total, allocated, capacity_GB, size, rpm):
         super().__init__(name, manufacturer, total, allocated, capacity_GB)
-        self._size = self.valid_sizes(size)
+        self._size = self.validate_size_field(size)
         self._rpm = self._integer_field_verification(rpm, 'RPM') 
 
     def validate_size_field(self, value):

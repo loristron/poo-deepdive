@@ -17,10 +17,14 @@ def test_create_type_error_capacity():
     assert te
 
 def test_create_value_error_size():
-    pass #TODO 
+    with pytest.raises(ValueError) as ve:
+        hdd = HDD(name='Hard Disk Drive', manufacturer='Siemens', total=100, allocated=20, capacity_GB=200, size='2.5', rpm=7000)
+    assert ve
 
 def test_create_type_error_size():
-    pass #TODO
+    with pytest.raises(TypeError) as te:
+        hdd = HDD(name='Hard Disk Drive', manufacturer='Siemens', total=100, allocated=20, capacity_GB='x', size=700, rpm=7000)
+    assert te
 
 def test_create_value_error_rpm():
     with pytest.raises(ValueError) as ve:

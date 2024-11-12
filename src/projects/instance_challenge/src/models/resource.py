@@ -44,7 +44,7 @@ class Resource:
         return f"{str(self.__class__.__name__).lower()}"
     
     @staticmethod
-    def _string_field_verification(value, field):
+    def _string_field_verification(value, field='Field'):
         if not isinstance(value, str):
             raise TypeError(f'{str(field).strip().capitalize()} must be a string')
         if  len(value.strip()) < 2:
