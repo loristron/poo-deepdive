@@ -1,6 +1,6 @@
 import pytest 
-from classes.storage import HDD, Storage
-from classes.resource import Resource
+from models.storage import HDD, Storage
+from models.resource import Resource
 
 def test_sucess_create_hdd():
     hdd = HDD(name='Hard Disk Drive', manufacturer='Siemens', total=100, allocated=20, capacity_GB=220, size='2.5"', rpm=7000)

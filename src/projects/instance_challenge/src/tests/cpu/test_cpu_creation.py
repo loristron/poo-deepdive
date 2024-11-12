@@ -1,5 +1,5 @@
-from classes.cpu import CPU
-from classes.resource import Resource
+from models.cpu import CPU
+from models.resource import Resource
 import pytest
 
 def test_success_creation():

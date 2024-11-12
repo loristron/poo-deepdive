@@ -1,4 +1,4 @@
-from classes.cpu import CPU
+from models.cpu import CPU
 import pytest
 
 class TestCPUReadOnly:

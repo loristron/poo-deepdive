@@ -1,4 +1,4 @@
-from classes.resource import Resource
+from models.resource import Resource
 
 class CPU(Resource):
     def __init__(self, name, manufacturer, total, allocated, cores, socket, power_watts):

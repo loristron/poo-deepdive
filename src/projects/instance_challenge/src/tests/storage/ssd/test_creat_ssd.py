@@ -1,5 +1,5 @@
-from classes.resource import Resource
-from classes.storage import Storage, SSD
+from models.resource import Resource
+from models.storage import Storage, SSD
 import pytest
 
 def test_create_sucess_ssd():

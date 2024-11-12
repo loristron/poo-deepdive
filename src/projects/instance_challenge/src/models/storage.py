@@ -1,4 +1,4 @@
-from classes.resource import Resource
+from models.resource import Resource
 
 class Storage(Resource):
     def __init__(self, name, manufacturer, total, allocated, capacity_GB):
@@ -10,11 +10,20 @@ class Storage(Resource):
         return self._capacity_GB
     
 class HDD(Storage):
+
+    valid_sizes = ['2.5"', '3.5"']
+
     def __init__(self, name, manufacturer, total, allocated, capacity_GB, size, rpm):
         super().__init__(name, manufacturer, total, allocated, capacity_GB)
-        self._size = size #TODO: 
+        self._size = self.valid_sizes(size)
         self._rpm = self._integer_field_verification(rpm, 'RPM') 
 
+    def validate_size_field(self, value):
+        value = self._string_field_verification(value)
+        if value not in HDD.valid_sizes:
+            raise ValueError('Size must be 2.5" or 3.5"')
+        return value 
+    
     @property
     def size(self):
         return self._size 

@@ -1,4 +1,4 @@
-from classes.resource import Resource
+from models.resource import Resource
 import pytest
 
 class TestFreeup():
