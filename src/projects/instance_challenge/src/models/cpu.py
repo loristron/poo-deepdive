@@ -9,12 +9,27 @@ class CPU(Resource):
 
     @property 
     def cores(self):
+        """Cores property
+
+        Returns:
+            int: Return the name of the cores in CPU
+        """
         return self._cores 
     
     @property
     def socket(self):
+        """Socket property
+
+        Returns:
+            str: CPU Socket name
+        """
         return self._socket 
     
     @property
     def power_watts(self):
+        """Power Watts property
+
+        Returns:
+            int: CPU Power watts 
+        """
         return self._power_watts
