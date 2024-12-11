@@ -1,15 +1,29 @@
 from models.resource import Resource
 
 class Storage(Resource):
+    """Base class for storage units. Inherits from Resource base class 
+    """
     def __init__(self, name, manufacturer, total, allocated, capacity_GB):
         super().__init__(name=name, manufacturer=manufacturer, total=total, allocated=allocated)
         self._capacity_GB = self._integer_field_verification(capacity_GB, 'Capacity GB')
 
+    def __str__(self) -> str:
+        return super().__str__()
+
+    def __repr__(self) -> str:
+        return f"Storage(name={self.name}, manufacturer={self.manufacturer}, total={self.total}, allocated={self.allocated}, capacity_GB={self.capacity_GB})"
+
     @property
-    def capacity_GB(self):
+    def capacity_GB(self) -> int:
+        """Capacity, in GB, Property 
+
+        Returns:
+            int: GB Storage capacity
+        """
         return self._capacity_GB
     
 class HDD(Storage):
+    """Base class for HDD Items. Inherits from Storage"""
 
     valid_sizes = ['2.5"', '3.5"']
 
@@ -18,25 +32,64 @@ class HDD(Storage):
         self._size = self.validate_size_field(size)
         self._rpm = self._integer_field_verification(rpm, 'RPM') 
 
-    def validate_size_field(self, value):
+    def __str__(self) -> str:
+        return super().__str__()
+    
+    def __repr__(self) -> str:
+        return f"HDD(name={self.name}, manufacturer={self.manufacturer}, total={self.total}, allocated={self.allocated}, capacity_GB={self.capacity_GB}, size={self.size}, rpm={self.rpm})"
+
+    def validate_size_field(self, value: str) -> str:
+        """Check if the value field provided is inside valid sizes
+
+        Args:
+            value (str): Input value
+
+        Raises:
+            ValueError: If the size provided is not in valid sizes accepted
+
+        Returns:
+            str: Stripped version of value arg
+        """
         value = self._string_field_verification(value)
         if value not in HDD.valid_sizes:
             raise ValueError('Size must be 2.5" or 3.5"')
-        return value 
+        return value.strip() 
     
     @property
-    def size(self):
+    def size(self) -> str:
+        """Size field Property. Size must be between valid sizes 
+
+        Returns:
+            str: Valid size 
+        """
         return self._size 
     
     @property
-    def rpm(self):
+    def rpm(self) -> int:
+        """RPM (rotations per minute) property
+
+        Returns:
+            int: HDD Rotations per minute value
+        """
         return self.rpm 
     
 class SSD(Storage):
+    """Base class for SSD item, inherits from Storage"""
     def __init__(self, name, manufacturer, total, allocated, capacity_GB, interface):
         super().__init__(name, manufacturer, total, allocated, capacity_GB)
         self._interface = self._string_field_verification(interface, 'Interface')
 
+    def __str__(self) -> str:
+        return super().__str__()
+        
+    def __repr__(self) -> str:
+        return f"SSD(name={self.name}, manufacturer={self.manufacturer}, total={self.total}, allocated={self.allocated}, capacity_GB={self.capacity_GB}, interface={self.interface})"
+
     @property
-    def interface(self):
+    def interface(self) -> str:
+        """Interface property
+
+        Returns:
+            str: Interface name
+        """
         return self._interface
